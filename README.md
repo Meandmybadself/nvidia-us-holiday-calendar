@@ -2,13 +2,16 @@
 
 Cloudflare worker to scrape the NVIDIA holiday calendar and generate a URL-accessible iCal.
 
-## Background
+Download / Subscribe:
+https://free-and-holi.day
 
-I like converting lists of dates to calendars.
-- https://github.com/Meandmybadself/mealviewer-to-ICS
-
-## Usage
+## Development
 
 ```bash
 pnpm run build
 ```
+
+## Background
+
+I like converting lists of dates to calendars.
+- https://github.com/Meandmybadself/mealviewer-to-ICS
