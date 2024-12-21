@@ -67,7 +67,7 @@ function generateICS(holidays) {
     'X-WR-CALNAME:NVIDIA US Holidays'
   ].join('\r\n');
 
-  Object.entries(holidays).forEach(([year, dates]) => {
+  Object.entries(holidays).forEach(([_, dates]) => {
     dates.forEach(holiday => {
       const date = holiday.dateObj;
       const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -79,7 +79,7 @@ function generateICS(holidays) {
         `DTSTART;VALUE=DATE:${dateString}`,
         `DTEND;VALUE=DATE:${dateString}`,
         `SUMMARY:${holiday.description}`,
-        `DESCRIPTION:NVIDIA Holiday - ${holiday.description}`,
+        `DESCRIPTION:NVIDIA USHoliday - ${holiday.description}`,
         'SEQUENCE:0',
         'STATUS:CONFIRMED',
         `UID:nvidia-holiday-${date.getTime()}@nvidia.com`,
@@ -126,7 +126,7 @@ export default {
       return new Response(icsContent, {
         headers: {
           'Content-Type': 'text/calendar',
-          'Content-Disposition': 'attachment; filename="nvidia_holidays.ics"'
+          'Content-Disposition': 'attachment; filename="NVIDIA US Holidays.ics"'
         }
       });
     } catch (error) {
