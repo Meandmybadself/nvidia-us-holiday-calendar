@@ -1,15 +1,21 @@
 {
-  "name": "nvidia-calendar",
+  "name": "nvidia-us-holiday-calendar",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "start": "wrangler dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cheerio": "^1.0.0"
+    "cheerio": "1.0.0"
+  },
+  "devDependencies": {
+    "wrangler": "^3.99.0"
   }
 }
