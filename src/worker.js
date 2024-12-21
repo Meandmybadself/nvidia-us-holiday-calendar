@@ -1,8 +1,8 @@
-import { cheerio } from 'https://esm.sh/cheerio@1.0.0-rc.12';
+import { load } from 'cheerio';
 
 // Function to parse holiday dates from HTML
 function parseHolidays(html) {
-  const $ = cheerio.load(html);
+  const $ = load(html);
   const holidays = {
     "2024": [],
     "2025": []
@@ -42,7 +42,7 @@ function parseHolidays(html) {
             const [month, dayStr] = dateStr.split(' ');
             const day = parseInt(dayStr, 10);
             
-            return new Date(parseInt(year, 10)+1, monthMap[month], day);
+            return new Date(parseInt(year, 10), monthMap[month], day);
           };
 
           holidays[year].push({
@@ -62,8 +62,9 @@ function generateICS(holidays) {
   let icsContent = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//NVIDIA Holidays//EN',
-    'CALSCALE:GREGORIAN'
+    'PRODID:-//NVIDIA US Holidays//EN',
+    'CALSCALE:GREGORIAN',
+    'X-WR-CALNAME:NVIDIA US Holidays'
   ].join('\r\n');
 
   Object.entries(holidays).forEach(([year, dates]) => {
