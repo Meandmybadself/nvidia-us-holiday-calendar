@@ -29,7 +29,7 @@ function parseHolidays(html) {
               'Feb.': 1, 'Feb': 1,
               'Mar.': 2, 'Mar': 2,
               'Apr.': 3, 'Apr': 3,
-              'May': 4,
+              'May': 4, 'May.': 4,
               'June': 5, 'Jun': 5,
               'July': 6, 'Jul': 6,
               'Aug.': 7, 'Aug': 7,
@@ -68,7 +68,7 @@ function generateICS(holidays) {
   ].join('\r\n');
 
   Object.entries(holidays).forEach(([_, dates]) => {
-    dates.forEach(holiday => {
+    dates.forEach((holiday, i) => {
       const date = holiday.dateObj;
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const day = String(date.getDate()).padStart(2, '0');
@@ -82,7 +82,8 @@ function generateICS(holidays) {
         `DESCRIPTION:NVIDIA USHoliday - ${holiday.description}`,
         'SEQUENCE:0',
         'STATUS:CONFIRMED',
-        `UID:nvidia-holiday-${date.getTime()}@nvidia.com`,
+        `UID:nvidia-holiday-${i}-${date.getTime()}@nvidia.com`,
+        `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+Z/, 'Z')}`,
         'TRANSP:TRANSPARENT',
         'END:VEVENT'
       ].join('\r\n');
